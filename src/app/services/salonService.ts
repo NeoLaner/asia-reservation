@@ -1,7 +1,8 @@
 import { createRedis } from "@/lib/redis";
 
 export function salonService() {
-  //create redis once at top of module
+  //create redis once at top of the module
+  //properties
   const redis = createRedis();
   console.log("Redis listener count:", redis.listenerCount("error"));
   if (redis.listenerCount("error") > 1)

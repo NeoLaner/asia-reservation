@@ -3,6 +3,8 @@ import { createErrorResponse } from "@/utils/errorHandler";
 import { NextRequest } from "next/server";
 import { z } from "zod";
 
+const { getSalonById } = salonService();
+
 const paramsSchema = z.object({
   salonId: z.string(),
 });
@@ -16,7 +18,6 @@ export async function GET(
     const validatedParams = paramsSchema.parse(await params);
 
     //2) handler
-    const { getSalonById } = salonService();
     const data = getSalonById(validatedParams.salonId);
 
     //3) response
