@@ -1,5 +1,8 @@
+// import files
 import { salonService } from "@/app/services/salonService";
 import { createErrorResponse } from "@/utils/errorHandler";
+
+// import packages
 import { NextRequest } from "next/server";
 import { z } from "zod";
 

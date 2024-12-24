@@ -1,12 +1,12 @@
 import { createRedis } from "@/lib/redis";
+import { bugDetector } from "@/utils/bugDetector";
 
+//services just used for handling data on redis
 export function salonService() {
   //create redis once at top of the module
   //properties
   const redis = createRedis();
-  console.log("Redis listener count:", redis.listenerCount("error"));
-  if (redis.listenerCount("error") > 1)
-    console.log("🔥🔥🔥🔥🔥 WARNING a nasty bug detected!!!");
+  bugDetector(redis);
 
   //methods
   async function getSalonById(salonId: string) {
@@ -22,6 +22,7 @@ export function salonService() {
   return { getSalonById, getAllSalons };
 }
 
+//types generator
 type SalonService = ReturnType<typeof salonService>;
 export type SalonData = Awaited<ReturnType<SalonService["getSalonById"]>>;
 export type SalonsData = Awaited<ReturnType<SalonService["getAllSalons"]>>;
