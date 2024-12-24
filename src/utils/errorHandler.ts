@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-export function createErrorResponse(error: unknown) {
+export function catchErrorResponse(error: unknown) {
   //if there is validation error return zod error messages
   if (error instanceof z.ZodError) {
     return NextResponse.json({ error: error.errors }, { status: 400 });

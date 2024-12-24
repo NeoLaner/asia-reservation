@@ -5,6 +5,7 @@ let redis: Redis | null = null;
 export function createRedis() {
   if (!redis) {
     redis = new Redis({
+      port: 6290,
       retryStrategy() {
         // Reconnect after 5 seconds
         return 3000;
